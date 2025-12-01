@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelApplication.Components;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,15 +16,21 @@ namespace HotelApplication.Forms.Dashboard
         public FrmMainDashboard()
         {
             InitializeComponent();
+            this.BackColor = RoundedCorners.HotelPalette.MainBackground;
         }
 
-        private void testBtn_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
         {
             Admin adminPage = new Admin();
-            ShowView(adminPage);
+            ShowViewInPanel(adminPage);
         }
 
-        private void ShowView(UserControl view)
+        private void ShowViewInPanel(UserControl view)
         {
             view.Dock = DockStyle.Fill;
             pnlTest.Controls.Add(view);
