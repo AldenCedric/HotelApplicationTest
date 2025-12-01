@@ -102,6 +102,7 @@ namespace HotelApplication.Forms.Dashboard
             btnLogout.BorderRadius = 10;
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.ForeColor = Color.FromArgb(238, 238, 238);
+            btnLogout.HoverColor = Color.FromArgb(0, 173, 181);
             btnLogout.Location = new Point(12, 520);
             btnLogout.Name = "btnLogout";
             btnLogout.PressColor = Color.FromArgb(0, 173, 181);
@@ -119,6 +120,7 @@ namespace HotelApplication.Forms.Dashboard
             btnSettings.BorderRadius = 10;
             btnSettings.FlatStyle = FlatStyle.Flat;
             btnSettings.ForeColor = Color.FromArgb(238, 238, 238);
+            btnSettings.HoverColor = Color.FromArgb(0, 173, 181);
             btnSettings.Location = new Point(12, 160);
             btnSettings.Name = "btnSettings";
             btnSettings.PressColor = Color.FromArgb(0, 173, 181);
@@ -136,6 +138,7 @@ namespace HotelApplication.Forms.Dashboard
             btnUsers.BorderRadius = 10;
             btnUsers.FlatStyle = FlatStyle.Flat;
             btnUsers.ForeColor = Color.FromArgb(238, 238, 238);
+            btnUsers.HoverColor = Color.FromArgb(0, 173, 181);
             btnUsers.Location = new Point(12, 108);
             btnUsers.Name = "btnUsers";
             btnUsers.PressColor = Color.FromArgb(0, 173, 181);
@@ -153,6 +156,7 @@ namespace HotelApplication.Forms.Dashboard
             btnDashboard.BorderRadius = 10;
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.ForeColor = Color.FromArgb(238, 238, 238);
+            btnDashboard.HoverColor = Color.FromArgb(0, 173, 181);
             btnDashboard.Location = new Point(12, 56);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.PressColor = Color.FromArgb(0, 173, 181);
@@ -267,7 +271,7 @@ namespace HotelApplication.Forms.Dashboard
             lblNewUsersValue.Name = "lblNewUsersValue";
             lblNewUsersValue.Size = new Size(175, 45);
             lblNewUsersValue.TabIndex = 1;
-            lblNewUsersValue.Text = "0";
+            lblNewUsersValue.Text = "4";
             // 
             // FrmMainDashboard
             // 

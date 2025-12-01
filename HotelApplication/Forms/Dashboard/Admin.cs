@@ -55,8 +55,8 @@ namespace HotelApplication.Forms.Dashboard
 
             // 3. Action Buttons
             btnAddUser = CreateButton("Add Staff", Color.FromArgb(0, 0, 255), 340);
-            btnEditUser = CreateButton("Edit Selected", Color.FromArgb(57, 62, 70), 480);
-            btnDeleteUser = CreateButton("Deactivate", Color.FromArgb(255, 0, 0), 620);
+            btnEditUser = CreateButton2("Edit Selected", Color.FromArgb(32, 32, 32), 480);
+            btnDeleteUser = CreateButton3("Deactivate", Color.FromArgb(255, 0, 0), 620);
 
             // 4. Data Grid View (The list)
             dgvUsers = new DataGridView();
@@ -95,6 +95,38 @@ namespace HotelApplication.Forms.Dashboard
             btn.Font = new Font("Segoe UI", 9, FontStyle.Regular);
             btn.BackColor = bg;
             btn.ForeColor = Color.FromArgb(238, 238, 238);
+            btn.HoverColor = Color.FromArgb(65, 105, 255);
+            btn.PressColor = Color.FromArgb(30, 144, 255);
+            btn.Size = new Size(122, 36);
+            btn.Location = new Point(x, 70);
+            btn.BorderRadius = 10;
+            btn.Click += ActionButton_Click;
+            return btn;
+        }
+        private RoundedButton CreateButton2(string text, Color bg, int x)
+        {
+            RoundedButton btn = new RoundedButton();
+            btn.Text = text;
+            btn.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            btn.BackColor = bg;
+            btn.ForeColor = Color.FromArgb(238, 238, 238);
+            btn.HoverColor = Color.FromArgb(57, 62, 70);
+            btn.PressColor = Color.FromArgb(32, 32, 32);
+            btn.Size = new Size(122, 36);
+            btn.Location = new Point(x, 70);
+            btn.BorderRadius = 10;
+            btn.Click += ActionButton_Click;
+            return btn;
+        }
+        private RoundedButton CreateButton3(string text, Color bg, int x)
+        {
+            RoundedButton btn = new RoundedButton();
+            btn.Text = text;
+            btn.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            btn.BackColor = bg;
+            btn.ForeColor = Color.FromArgb(238, 238, 238);
+            btn.HoverColor = Color.FromArgb(190, 0, 0);
+            btn.PressColor = Color.FromArgb(120, 0, 0);
             btn.Size = new Size(122, 36);
             btn.Location = new Point(x, 70);
             btn.BorderRadius = 10;
