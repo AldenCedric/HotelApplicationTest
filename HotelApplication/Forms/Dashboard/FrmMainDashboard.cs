@@ -22,6 +22,7 @@ namespace HotelApplication.Forms.Dashboard
         private Panel pnlNavButtons; // We create this one dynamically
         private Label lblLogo;       // We create this one dynamically
         private CustomerUC activeCustomerPanel;
+        private Admin activeAdminPanel;
 
         public FrmMainDashboard()
         {
@@ -45,11 +46,13 @@ namespace HotelApplication.Forms.Dashboard
             if (role == "Customer")
             {
                 activeCustomerPanel = new CustomerUC();
+                activeAdminPanel = new Admin();
                 ShowView(activeCustomerPanel);
             }
             else if (role == "Admin")
             {
-                ShowView(new Admin());
+                activeAdminPanel = new Admin();
+                ShowView(activeAdminPanel);
             }
             else
             {
@@ -87,13 +90,26 @@ namespace HotelApplication.Forms.Dashboard
 
             if (role == "Customer")
             {
-                AddSidebarButton("Browse Rooms", (s, e) => activeCustomerPanel?.LoadAvailableRooms(), ref buttonY);
-                AddSidebarButton("Room Service", (s, e) => activeCustomerPanel?.LoadRoomServices(), ref buttonY);
-                AddSidebarButton("My History", (s, e) => activeCustomerPanel?.LoadHistory(), ref buttonY);
+                AddSidebarButton("Browse Rooms", (s, e) =>
+                {
+                    ShowView(activeCustomerPanel);
+                    activeCustomerPanel?.LoadAvailableRooms();
+                }, ref buttonY);
+                AddSidebarButton("Room Service", (s, e) =>
+                {
+                    ShowView(activeCustomerPanel);
+                    activeCustomerPanel?.LoadRoomServices();
+                }, ref buttonY);
+                AddSidebarButton("My History", (s, e) =>
+                {
+                    ShowView(activeCustomerPanel);
+                    activeCustomerPanel?.LoadHistory();
+                }, ref buttonY);
+                AddSidebarButton("Users", (s, e) => ShowView(activeAdminPanel), ref buttonY);
             }
             else if (role == "Admin")
             {
-                AddSidebarButton("User Management", (s, e) => ShowView(new Admin()), ref buttonY);
+                AddSidebarButton("User Management", (s, e) => ShowView(activeAdminPanel), ref buttonY);
                 AddSidebarButton("Room Settings", (s, e) => MessageBox.Show("Room Settings View"), ref buttonY);
                 AddSidebarButton("System Logs", (s, e) => MessageBox.Show("Logs View"), ref buttonY);
             }

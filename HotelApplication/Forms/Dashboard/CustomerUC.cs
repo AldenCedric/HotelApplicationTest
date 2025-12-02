@@ -142,7 +142,7 @@ namespace HotelApplication.Forms.Dashboard
             // --- 2. Filter Bar ---
             pnlFilters = new Panel { Height = 60, Dock = DockStyle.Top, Visible = false, Padding = new Padding(20, 10, 20, 0) };
 
-            txtSearch = new UITextBox { PlaceholderText = "Search...", Size = new Size(250, 40), Location = new Point(20, 10), BorderRadius = 15 };
+            txtSearch = new UITextBox { PlaceholderText = "Search...", Size = new Size(250, 40), Location = new Point(20, 10), BorderRadius = 15, ForeColor = HotelPalette.TextPrimary };
             txtSearch._TextChanged += (s, e) => ApplyFilters();
 
             cmbSort = new ComboBox { Location = new Point(290, 18), Size = new Size(150, 30), DropDownStyle = ComboBoxStyle.DropDownList, FlatStyle = FlatStyle.Flat, BackColor = HotelPalette.Surface, ForeColor = Color.White, Font = new Font("Segoe UI", 10) };
