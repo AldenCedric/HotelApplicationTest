@@ -39,9 +39,9 @@ namespace HotelApplication.Forms.Dashboard
 
             // 1. Header
             Panel pnlHeader = new Panel { Height = 60, Dock = DockStyle.Top, Padding = new Padding(20) };
-            
+
             Label lblTitle = new Label { Text = "Staff Directory", Font = new Font("Segoe UI", 16, FontStyle.Bold), ForeColor = HotelPalette.TextPrimary, Location = new Point(20, 15), AutoSize = true };
-            
+
             pnlHeader.Controls.Add(lblTitle);
 
             // 2. Filter Bar
@@ -50,7 +50,9 @@ namespace HotelApplication.Forms.Dashboard
             int currentX = 20;
 
             txtSearchUsers = new UITextBox { PlaceholderText = "Search staff...", Size = new Size(250, 35), Location = new Point(currentX, 12), BorderRadius = 15, ForeColor = HotelPalette.TextPrimary };
-            
+            // Add Search Event
+            txtSearchUsers._TextChanged += (s, e) => SearchData(txtSearchUsers.Text);
+
             currentX += 250 + 20;
 
             RoundedButton btnAdd = new RoundedButton { Text = "Add Staff", BackColor = HotelPalette.Accent, ForeColor = HotelPalette.TextPrimary, Size = new Size(130, 35), Location = new Point(currentX, 12), BorderRadius = 15, Font = new Font("Segoe UI", 10) };
@@ -92,6 +94,29 @@ namespace HotelApplication.Forms.Dashboard
             dgvUsers.Rows.Add("101", "Alice Johnson", "Manager");
             dgvUsers.Rows.Add("102", "Bob Smith", "Receptionist");
             dgvUsers.Rows.Add("103", "Charlie Davis", "Housekeeping");
+        }
+
+        private void SearchData(string searchTerm)
+        {
+            if (dgvUsers.Rows.Count == 0) return;
+
+            dgvUsers.CurrentCell = null;
+
+            foreach (DataGridViewRow row in dgvUsers.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                bool isVisible = false;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && cell.Value.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    {
+                        isVisible = true;
+                        break;
+                    }
+                }
+                row.Visible = isVisible;
+            }
         }
     }
 }

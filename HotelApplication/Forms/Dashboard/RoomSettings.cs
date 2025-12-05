@@ -16,6 +16,7 @@ namespace HotelApplicationTest.Forms.Dashboard
     public partial class RoomSettings : UserControl
     {
         private DataGridView dgvRooms;
+        private UITextBox txtSearch; // Promoted to class field
 
         public RoomSettings()
         {
@@ -43,8 +44,10 @@ namespace HotelApplicationTest.Forms.Dashboard
             int currentX = 20;
             int gap = 15;
 
-            UITextBox txtSearch = new UITextBox { PlaceholderText = "Search rooms...", Size = new Size(250, 35), Location = new Point(currentX, 12), BorderRadius = 15, ForeColor = HotelPalette.TextPrimary };
-            
+            txtSearch = new UITextBox { PlaceholderText = "Search rooms...", Size = new Size(250, 35), Location = new Point(currentX, 12), BorderRadius = 15, ForeColor = HotelPalette.TextPrimary };
+            // Add Search Event
+            txtSearch._TextChanged += (s, e) => SearchData(txtSearch.Text);
+
             currentX += 250 + gap;
 
             RoundedButton btnAddRoom = CreateButton("Add Room", HotelPalette.Accent, ref currentX);
@@ -108,6 +111,29 @@ namespace HotelApplicationTest.Forms.Dashboard
             dgvRooms.Rows.Add("101", "Deluxe King", "$150.00", "Available");
             dgvRooms.Rows.Add("102", "Standard Queen", "$100.00", "Occupied");
             dgvRooms.Rows.Add("201", "Suite", "$250.00", "Maintenance");
+        }
+
+        private void SearchData(string searchTerm)
+        {
+            if (dgvRooms.Rows.Count == 0) return;
+
+            dgvRooms.CurrentCell = null;
+
+            foreach (DataGridViewRow row in dgvRooms.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                bool isVisible = false;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && cell.Value.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    {
+                        isVisible = true;
+                        break;
+                    }
+                }
+                row.Visible = isVisible;
+            }
         }
     }
 }
