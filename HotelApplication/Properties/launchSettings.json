@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "HotelApplicationTest": {
+    "HotelApplication": {
       "commandName": "Project"
     }
   }
